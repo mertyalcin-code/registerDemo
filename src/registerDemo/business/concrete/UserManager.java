@@ -32,8 +32,8 @@ public class UserManager implements UserService {
     @Override
     public void singUp(User user) {
 
-        if (userCheckService.checkMail(user.getEmail()) == true) {
-            if (userCheckService.checkAlreadyRegistered(user) == true) {
+        if (userCheckService.checkMail(user.getEmail())) {
+            if (userCheckService.checkAlreadyRegistered(user)) {
                 if (userCheckService.checkFirstName(user.getFirstName())) {
                     if (userCheckService.checkLastName(user.getLastName())) {
                         if(userCheckService.checkPassword(user.getPassword())) {
@@ -63,17 +63,17 @@ public class UserManager implements UserService {
 
     @Override
     public void singIn(String email, String password) {
-        ArrayList<User> users = new ArrayList<User>();
+        ArrayList<User> users ;
         users=iUserDao.getAll();
         User userLogin = null;
         boolean login = false;
         for (User user: users){
-            if(user.getEmail()==email && user.getPassword()==password &&user.isEmailValidation()==true){
+            if(user.getEmail().equals(email) && user.getPassword().equals(password) && user.isEmailValidation()){
                 login=true;
                 userLogin=user;
             }
         }
-        if(login==true){
+        if(login){
             System.out.println("Kullanıcı adı ve şifre ile giriş başarılı: "+userLogin.getFirstName()+" "+userLogin.getLastName());
         }
         else {
@@ -101,21 +101,21 @@ public class UserManager implements UserService {
 
     @Override
     public void SignInWithGoogle(String email) {
-        List<String> listOfInfo = new ArrayList<>();
+        List<String> listOfInfo ;
         listOfInfo =signInService.signInWithOthers(email);
-        List<User> users = new ArrayList<User>();
+        List<User> users ;
         users=iUserDao.getAll();
 
         User userLogin = null;
         boolean login = false;
 
         for (User user: users){
-            if(user.getEmail()==listOfInfo.get(0) && user.getPassword()==listOfInfo.get(1)){
+            if(user.getEmail().equals(listOfInfo.get(0)) && user.getPassword().equals(listOfInfo.get(1))){
                 login=true;
                 userLogin=user;
             }
         }
-        if(login==true){
+        if(login){
             System.out.println("Google ile giriş başarılı: "+userLogin.getFirstName()+" "+userLogin.getLastName()+" "+userLogin.getEmail());
         }
         else {
