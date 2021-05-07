@@ -1,17 +1,30 @@
 package registerDemo.google;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GoogleSignUp {
-    static class GoogleCustomer{
-        String email;
+
+
+
+
+    public List<String> signUp(String email){
+        List<String> googleUserInfo =new ArrayList<String>() {    };
         String firstName;
         String lastName;
-    }
+        String password;
+        String emailToGo;
 
+            emailToGo=email;
+            firstName="FirstNameFromGoogle";
+            lastName="LastNameFromGoogle";
+            password="PasswordGeneratedFromGoogle";
 
-    public boolean signUp(String email){
-            System.out.println("Google ile kayıt yapıldı.");
-
-        return true;
+            googleUserInfo.add(emailToGo);
+             googleUserInfo.add(password);
+            googleUserInfo.add(firstName);
+             googleUserInfo.add(lastName);
+                 return googleUserInfo;
     }
 
 }

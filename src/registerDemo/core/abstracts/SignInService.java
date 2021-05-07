@@ -1,5 +1,7 @@
 package registerDemo.core.abstracts;
 
+import java.util.List;
+
 public interface SignInService {
-    boolean signInWithOthers(String email);
+    public List<String> signInWithOthers(String email);
 }

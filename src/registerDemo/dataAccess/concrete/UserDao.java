@@ -15,7 +15,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public void add(User user) {
-        System.out.println(user.getFirstName() + " UserDao ile kayıt oldu");
+        System.out.println(user.getFirstName()+" "+user.getLastName() + " kayıt oldu");
         userList.add(user);
 
     }
