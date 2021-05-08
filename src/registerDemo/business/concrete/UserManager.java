@@ -13,10 +13,10 @@ import java.util.List;
 
 public class UserManager implements UserService {
 
-    UserCheckService userCheckService;
-    IUserDao iUserDao;
-    SignUpService signUpService;
-    SignInService signInService;
+    private UserCheckService userCheckService;
+    private IUserDao iUserDao;
+    private SignUpService signUpService;
+    private SignInService signInService;
 
     public UserManager(IUserDao iUserDao, SignUpService signUpService, SignInService signInService) {
         this.iUserDao = iUserDao;
@@ -86,10 +86,11 @@ public class UserManager implements UserService {
     @Override
     public void SignUpWithGoogle(String email) {
         if ( signUpService.signUpWithOthers(email)!=null){
-            String emailToGo= signUpService.signUpWithOthers(email).get(0);
-            String passwordToGo = signUpService.signUpWithOthers(email).get(1);
-            String firstNameToGo=signUpService.signUpWithOthers(email).get(2);
-            String lastNameToGo=signUpService.signUpWithOthers(email).get(3);
+            List<String> userInfo = signUpService.signUpWithOthers(email);
+            String emailToGo= userInfo.get(0);
+            String passwordToGo = userInfo.get(1);
+            String firstNameToGo= userInfo.get(2);
+            String lastNameToGo= userInfo.get(3);
             iUserDao.add(new User(emailToGo,passwordToGo,firstNameToGo,lastNameToGo));
 
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface IUserDao {
     void add(User user);
 
-    boolean read(User user);
+    boolean isEmailExist(User user);
 
     ArrayList<User> getAll();
 }

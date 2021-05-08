@@ -49,6 +49,6 @@ public class UserCheck implements UserCheckService {
 
     @Override
     public boolean checkAlreadyRegistered(User user) {
-        return !iUserDao.read(user);
+        return !iUserDao.isEmailExist(user);
     }
 }

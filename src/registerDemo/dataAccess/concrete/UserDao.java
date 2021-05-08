@@ -21,12 +21,13 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public boolean read(User user) {
-        if (userList != null) {
-            for (User users : userList) {
-                if (users.getEmail().equals(user.getEmail())) {
-                    return true;
-                }
+    public boolean isEmailExist(User user) {
+        if (userList == null) {
+            return false;
+        }
+        for (User users : userList) {
+            if (users.getEmail().equals(user.getEmail())) {
+                return true;
             }
         }
         return false;
