@@ -9,9 +9,5 @@ public interface IUserDao {
 
     boolean read(User user);
 
-    void update(User user);
-
-    void delete(User user);
-
     ArrayList<User> getAll();
 }

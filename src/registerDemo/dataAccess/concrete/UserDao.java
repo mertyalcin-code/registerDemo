@@ -32,17 +32,6 @@ public class UserDao implements IUserDao {
         return false;
     }
 
-
-    @Override
-    public void update(User user) {
-
-    }
-
-    @Override
-    public void delete(User user) {
-
-    }
-
     @Override
     public ArrayList<User> getAll() {
         return userList;
