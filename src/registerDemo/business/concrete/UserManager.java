@@ -31,31 +31,31 @@ public class UserManager implements UserService {
 
     @Override
     public void singUp(User user) {
-
-        if (userCheckService.checkMail(user.getEmail())) {
-            if (userCheckService.checkAlreadyRegistered(user)) {
-                if (userCheckService.checkFirstName(user.getFirstName())) {
-                    if (userCheckService.checkLastName(user.getLastName())) {
-                        if(userCheckService.checkPassword(user.getPassword())) {
-                            iUserDao.add(user);
-                            MailSend.send(user);
-                        }
-
-                        else {System.out.println("Hatalı Şifre");
-                        }
-                    }else
-                        {System.out.println("Hatalı Soyisim");
-                    }
-                } else {
-                    System.out.println("Hatalı isim");
-                }
-            } else {
-                System.out.println("Daha önceden kayıt yapılmış");
-            }
-        } else {
+        if (!userCheckService.checkMail(user.getEmail())) {
             System.out.println("Email hatalı");
-        }}
-
+            return;
+        }
+        if (!userCheckService.checkAlreadyRegistered(user)) {
+            System.out.println("Email daha önce kullanılmış");
+            return;
+        }
+        if (!userCheckService.checkFirstName(user.getFirstName())) {
+            System.out.println("Hatalı isim");
+            return;
+        }
+        if (!userCheckService.checkLastName(user.getLastName())) {
+            System.out.println("Hatalı Soyisim");
+            return;
+        }
+        if (!userCheckService.checkPassword(user.getPassword())) {
+            System.out.println("Hatalı Şifre");
+            return;
+        }
+        else {
+            iUserDao.add(user);
+            MailSend.send(user);
+        }
+    }
 
 
 
